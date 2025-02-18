@@ -1,0 +1,147 @@
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .project-card {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card-header {
+    background-color:#001F3F;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .card-body {
+    padding: 10px;
+    
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* completed projects */
+
+  /* General Dashboard Styling */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Container for both working and completed projects */
+.projects-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px; /* Limit the height of containers */
+  overflow-y: auto; /* Enable vertical scroll */
+}
+
+/* Scrollbar styles for both working and completed projects */
+.scrollable {
+  max-height: 200px;
+  overflow-y: auto; /* Enable scrolling for projects */
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Individual Project Card Styling */
+.project-card {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Completed Projects Table Styling */
+/* General Dashboard Styling */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Container for both working and completed projects */
+.projects-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px; /* Limit the height of containers */
+  overflow-y: auto; /* Enable vertical scroll */
+}
+
+/* Scrollbar styles for both working and completed projects */
+.scrollable {
+  max-height: 200px;
+  overflow-y: auto; /* Enable scrolling for projects */
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Individual Project Card Styling */
+.project-card {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Completed Projects Table Styling */
+.completed-projects-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.completed-projects-table th,
+.completed-projects-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.completed-projects-table th {
+  background-color: #9ccafb;
+  color: white;
+  text-align: left;
+}
+
+.completed-projects-table td {
+  background-color: #f9f9f9;
+  text-align: left;
+}
+
+/* Styling for scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

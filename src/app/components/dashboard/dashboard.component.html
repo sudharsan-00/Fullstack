@@ -1,0 +1,39 @@
+<div class="dashboard">
+
+  <!-- Working Projects Container -->
+  <div class="projects-container">
+    <h2>Working Projects</h2>
+    <div class="projects-grid scrollable">
+      <div class="project-card" *ngFor="let project of projects; let i = index">
+        <a [routerLink]="['/contribution', i]">{{ project.title }}</a> <!-- Navigate to contribution -->
+        <p>{{ project.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completed Projects Container -->
+  <div class="projects-container">
+    <h2>Completed Projects</h2>
+    <div class="completed-projects-table-container scrollable">
+      <table class="completed-projects-table">
+        <thead>
+          <tr>
+            <th>Project Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let completedProject of completedProjects">
+            <td>{{ completedProject.title }}</td>
+            <td>{{ completedProject.description }}</td>
+            <td>{{ completedProject.status }}</td>
+            <td>{{ completedProject.sale }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+</div>

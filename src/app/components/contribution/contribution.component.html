@@ -1,0 +1,39 @@
+<div class="contribution-list">
+  <h3>Contributions for Project {{ projectId }}</h3>
+
+  <!-- Form to add new contribution -->
+  <div class="contribution-form">
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" [(ngModel)]="newStudentName" placeholder="Enter student name">
+
+    <label for="role">Role:</label>
+    <input type="text" id="role" [(ngModel)]="newRole" placeholder="Enter role">
+
+    <button (click)="addContribution()">Add Contribution</button>
+  </div>
+
+  <!-- Display contributions in a table format -->
+  <table class="contribution-list">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contribution of filteredContributions">
+        <td>{{ contribution.studentName }}</td>
+        <td>{{ contribution.role }}</td>
+        <td>
+          <button (click)="removeContribution(contribution)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Display message if no contributions are found -->
+  <div *ngIf="filteredContributions.length === 0">
+    <p>No contributions found for this project.</p>
+  </div>
+</div>

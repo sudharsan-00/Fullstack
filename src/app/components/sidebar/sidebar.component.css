@@ -1,0 +1,55 @@
+.sidebar {
+    width: 250px; /* Increased width slightly for better spacing */
+    background-color: #9ccafb;
+    color: rgb(255, 255, 255);
+    height: 100vh; /* Full height of the viewport */
+    padding: 20px; /* Padding inside the sidebar */
+    box-sizing: border-box; /* Ensures padding is included in width calculation */
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Aligns menu items in a vertical layout */
+    justify-content: space-between; /* Allows space between menu items */
+    font-weight: bold;
+  }
+  
+  /* Sidebar Menu Styling */
+  .sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Fills the available space */
+  }
+  
+  .sidebar-menu li {
+    margin-bottom: 20px; /* Spacing between menu items */
+  }
+  
+  .sidebar-menu li:last-child {
+    margin-bottom: 0; /* No margin for the last menu item */
+  }
+  
+  .sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px; /* Rounded corners for each menu item */
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar-menu a:hover {
+    background-color: #001F3F; /* Darker green on hover */
+  }
+  
+  /* Optional: Footer area inside the sidebar (e.g., logout or copyright) */
+  .sidebar-footer {
+    margin-top: auto; /* Pushes footer to the bottom of the sidebar */
+    padding: 10px;
+    background-color: #9ccafb; /* Darker shade for footer */
+    color: #cccccc;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  

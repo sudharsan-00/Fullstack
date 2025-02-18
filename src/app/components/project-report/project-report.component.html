@@ -1,0 +1,36 @@
+<div class="report-container">
+    <div class="due-date">
+      Project Due Date: October 15, 2024
+    </div>
+  
+    <form (ngSubmit)="submitWorkLog()">
+      <div>
+        <label for="week">Week</label>
+        <input type="number" id="week" [(ngModel)]="week" name="week" min="1" max="52" required>
+      </div>
+      <div>
+        <label for="log">Work Log</label>
+        <textarea id="log" [(ngModel)]="workLog" name="log" rows="5" required></textarea>
+      </div>
+      <button type="submit">Submit Work Log</button>
+    </form>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Work Log</th>
+          <th>Submission Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through the workLogs array and render each log -->
+        <tr *ngFor="let log of workLogs">
+          <td>{{ log.week }}</td>
+          <td>{{ log.log }}</td>
+          <td>{{ log.submissionDate | date: 'longDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
