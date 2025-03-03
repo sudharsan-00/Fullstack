@@ -1,0 +1,22 @@
+<div class="approval-container">
+    <h2>Pending Approvals</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Domain</th>
+        <th>Requirements</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let product of pendingProducts; let i = index">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.domain }}</td>
+        <td>{{ product.requirements }}</td>
+        <td>
+          <button (click)="approveProduct(i)">Approve</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  

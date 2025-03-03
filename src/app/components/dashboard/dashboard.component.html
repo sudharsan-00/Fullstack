@@ -5,7 +5,7 @@
     <h2>Working Projects</h2>
     <div class="projects-grid scrollable">
       <div class="project-card" *ngFor="let project of projects; let i = index">
-        <a [routerLink]="['/contribution', i]">{{ project.title }}</a> <!-- Navigate to contribution -->
+        <a [routerLink]="['/contribution', i]">{{ project.title }}</a>
         <p>{{ project.description }}</p>
       </div>
     </div>

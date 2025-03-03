@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http'; // Import HttpClient
-import { FormsModule } from '@angular/forms'; // Import FormsModule for two-way binding
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contribution',
@@ -18,7 +18,7 @@ export class ContributionComponent {
   newRole: string = '';
 
   // Backend API URL
-  private apiUrl = 'http://localhost:3000/api/contributions'; // Replace with your backend server URL
+  private apiUrl = 'http://localhost:5000/api/contributions';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.projectId = this.route.snapshot.paramMap.get('id') || '';
@@ -43,10 +43,13 @@ export class ContributionComponent {
         role: this.newRole,
       };
 
-      this.http.post(this.apiUrl, newContribution).subscribe(() => {
+      this.http.post(this.apiUrl, newContribution).subscribe((response: any) => {
+        alert(response.message);
         this.newStudentName = '';
         this.newRole = '';
-        this.loadContributions(); // Reload contributions after adding
+        this.loadContributions();
+      }, (error) => {
+        alert("Failed to add contribution");
       });
     }
   }
@@ -59,8 +62,11 @@ export class ContributionComponent {
           contribution.studentName
         )}`
       )
-      .subscribe(() => {
-        this.loadContributions(); // Reload contributions after removal
+      .subscribe((response: any) => {
+        alert(response.message);
+        this.loadContributions();
+      }, (error) => {
+        alert("Failed to remove contribution");
       });
   }
 }

@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },  // Corrected login route
-  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'contribution/:id', component: ContributionComponent },
   { path: 'project-report', component: ProjectReportComponent }, 
   { path: '**', redirectTo: '' }  // Redirect unknown paths to the dashboard

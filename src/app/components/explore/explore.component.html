@@ -1,0 +1,21 @@
+<div class="explore-container">
+    <h2>Create a New Product</h2>
+    <form (submit)="submitForApproval()">
+      
+      <label for="productId">Product ID:</label>
+      <input id="productId" type="text" [(ngModel)]="product.id" required placeholder="Enter Product ID" />
+  
+      <label for="productName">Product Name:</label>
+      <input id="productName" type="text" [(ngModel)]="product.name" required placeholder="Enter Product Name" />
+  
+      <label for="productDomain">Product Domain:</label>
+      <input id="productDomain" type="text" [(ngModel)]="product.domain" required placeholder="Enter Product Domain" />
+  
+      <label for="productRequirements">Product Requirements:</label>
+      <textarea id="productRequirements" [(ngModel)]="product.requirements" required placeholder="Enter Requirements"></textarea>
+  
+      <button type="submit">Request Approval</button>
+    </form>
+  </div>
+  
+  

@@ -1,12 +1,16 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
-import { ProjectReportComponent } from './components/project-report/project-report.component'; // Import the new component
-import { LoginComponent } from './components/login/login.component';
+import { ProjectReportComponent } from './components/project-report/project-report.component';
+import { ExploreComponent } from './components/explore/explore.component';
+import { ApprovalComponent } from './components/approval/approval.component';
 
 export const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'contribution/:id', component: ContributionComponent },
-  { path: 'project-report', component: ProjectReportComponent }, // Add the route
-  { path: '**', redirectTo: '' } // Fallback for unknown routes
+  { path: 'project-report', component: ProjectReportComponent },
+  { path: 'explore', component: ExploreComponent }, 
+  { path: 'approval', component: ApprovalComponent }, 
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard' }
 ];

@@ -1,45 +1,71 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
-import { RouterModule } from '@angular/router';// Import FormsModule// Import CommonModule
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 interface WorkLog {
   week: number;
-  workLog: string;
+  workDescription: string;
   submissionDate: Date;
 }
-
 
 @Component({
   selector: 'app-project-report',
   standalone: true,
-  imports: [ CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './project-report.component.html',
   styleUrl: './project-report.component.css'
 })
 
-export class ProjectReportComponent {
-  dueDate: Date = new Date('2024-12-31');  // Example due date
-  workLogs = [
-    { week: 1, log: 'Completed initial setup and project planning.', submissionDate: new Date() }
-  ];
+export class ProjectReportComponent implements OnInit {
+  apiUrl = 'http://localhost:5000'; // Backend API base URL
+  dueDate: Date = new Date('2024-12-31'); // Example due date
+  workLogs: WorkLog[] = []; // Store work logs from the server
 
   // Variables for binding form input
   week: number | null = null;
-  workLog: string = '';
+  workDescription: string = '';
 
-  // Method to handle form submission
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.fetchWorkLogs(); // Load existing work logs on page load
+  }
+
+  // Method to fetch work logs from the backend
+  fetchWorkLogs() {
+    this.http.get<WorkLog[]>(`${this.apiUrl}/get-worklogs`).subscribe(
+      (data) => {
+        this.workLogs = data;
+      },
+      (error) => {
+        console.error("Error fetching work logs:", error);
+      }
+    );
+  }
+
+  // Method to submit work log to backend
   submitWorkLog() {
-    if (this.week !== null && this.workLog.trim()) {
-      // Add the new log entry to the workLogs array
-      this.workLogs.push({
+    if (this.week !== null && this.workDescription.trim()) {
+      const newLog = {
         week: this.week,
-        log: this.workLog,
-        submissionDate: new Date()
-      });
+        workDescription: this.workDescription
+      };
 
-      // Clear the form fields after submission
+      this.http.post(`${this.apiUrl}/submit-worklog`, newLog).subscribe(
+        (response) => {
+          console.log("Work log submitted:", response);
+          this.fetchWorkLogs(); // Refresh work logs after submission
+        },
+        (error) => {
+          console.error("Error submitting work log:", error);
+        }
+      );
+
+      // Clear form fields after submission
       this.week = null;
-      this.workLog = '';
+      this.workDescription = '';
     } else {
       alert("Please fill out both the week and work log fields.");
     }
