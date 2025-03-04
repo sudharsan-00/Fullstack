@@ -1,6 +1,6 @@
 <div class="report-container">
   <div class="due-date">
-    Project Due Date: December 31, 2024
+    Project Due Date: {{ dueDate | date: 'longDate' }}
   </div>
 
   <form (ngSubmit)="submitWorkLog()">
@@ -15,22 +15,23 @@
     <button type="submit">Submit Work Log</button>
   </form>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Week</th>
-        <th>Work Log</th>
-        <th>Submission Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let log of workLogs">
-        <td>{{ log.week }}</td>
-        <td>{{ log.workDescription }}</td>
-        <td>{{ log.submissionDate | date: 'longDate' }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- 🔹 Scrollable Work Log Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Work Log</th>
+          <th>Submission Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of workLogs">
+          <td>{{ log.week }}</td>
+          <td>{{ log.workDescription }}</td>
+          <td>{{ log.submissionDate | date: 'longDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-  

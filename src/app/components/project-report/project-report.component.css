@@ -1,22 +1,23 @@
-/* Adjusted Report Container */
+/* Report Container */
 .report-container {
-    width: 80vw; /* Reduced width */
-    max-width: 900px; /* Max width for large screens */
-    height: auto; /* Let the content determine height */
-    margin: 40px auto; /* Centered and spaced from the top */
+    width: 80vw;
+    max-width: 900px;
+    margin: 40px auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    max-height: 80vh; /* Ensures it does not overflow the viewport */
+    overflow-y: auto;
 }
 
 /* Due Date Styling */
 .due-date {
-    font-weight: bold;
     font-size: 1.5rem;
+    font-weight: bold;
     color: #333;
     text-align: center;
     margin-bottom: 20px;
@@ -24,61 +25,79 @@
 
 /* Form Styling */
 form {
+    width: 100%;
+    max-width: 600px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 form div {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 form label {
     font-weight: bold;
     margin-bottom: 5px;
-    display: block;
     color: #555;
 }
 
 form input, form textarea {
     width: 100%;
     padding: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 form button {
-    padding: 12px 25px;
+    padding: 12px;
     background-color: #007bff;
     color: white;
+    font-size: 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 form button:hover {
     background-color: #0056b3;
 }
 
+/* 🔹 Scrollable Table */
+.table-container {
+    width: 100%;
+    max-width: 900px;
+    max-height: 300px;  /* Set a fixed height for scrolling */
+    overflow-y: auto;   /* Enable vertical scrolling */
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
 /* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-    text-align: center;
 }
 
 th, td {
     padding: 12px;
-    font-size: 1.1rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 1rem;
 }
 
 th {
     background-color: #007bff;
     color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 tr:nth-child(even) {
@@ -89,13 +108,24 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
+/* 🔹 Responsive Design */
 @media (max-width: 768px) {
     .report-container {
         width: 95%;
-        height: auto;
+        padding: 15px;
+        max-height: 90vh;  /* Allow better mobile scrolling */
+    }
+
+    .table-container {
+        max-height: 250px;  /* Reduce height for small screens */
     }
 
     th, td {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    form button {
+        font-size: 0.9rem;
     }
 }

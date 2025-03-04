@@ -17,35 +17,34 @@ interface WorkLog {
   templateUrl: './project-report.component.html',
   styleUrl: './project-report.component.css'
 })
-
 export class ProjectReportComponent implements OnInit {
-  apiUrl = 'http://localhost:5000'; // Backend API base URL
-  dueDate: Date = new Date('2024-12-31'); // Example due date
-  workLogs: WorkLog[] = []; // Store work logs from the server
+  apiUrl = 'http://localhost:5000/api'; // Backend API base URL
+  dueDate: Date = new Date('2024-12-31');
+  workLogs: WorkLog[] = []; // Store fetched work logs
 
-  // Variables for binding form input
+  // Form data binding
   week: number | null = null;
   workDescription: string = '';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.fetchWorkLogs(); // Load existing work logs on page load
+    this.fetchWorkLogs(); // Fetch work logs on component load
   }
 
-  // Method to fetch work logs from the backend
+  // ✅ Fetch work logs from backend
   fetchWorkLogs() {
     this.http.get<WorkLog[]>(`${this.apiUrl}/get-worklogs`).subscribe(
       (data) => {
         this.workLogs = data;
       },
       (error) => {
-        console.error("Error fetching work logs:", error);
+        console.error("❌ Error fetching work logs:", error);
       }
     );
   }
 
-  // Method to submit work log to backend
+  // ✅ Submit work log to backend
   submitWorkLog() {
     if (this.week !== null && this.workDescription.trim()) {
       const newLog = {
@@ -55,19 +54,19 @@ export class ProjectReportComponent implements OnInit {
 
       this.http.post(`${this.apiUrl}/submit-worklog`, newLog).subscribe(
         (response) => {
-          console.log("Work log submitted:", response);
-          this.fetchWorkLogs(); // Refresh work logs after submission
+          console.log("✅ Work log submitted:", response);
+          this.fetchWorkLogs(); // Refresh logs after submission
         },
         (error) => {
-          console.error("Error submitting work log:", error);
+          console.error("❌ Error submitting work log:", error);
         }
       );
 
-      // Clear form fields after submission
+      // Clear form fields
       this.week = null;
       this.workDescription = '';
     } else {
-      alert("Please fill out both the week and work log fields.");
+      alert("⚠️ Please fill out both the week and work log fields.");
     }
   }
 }

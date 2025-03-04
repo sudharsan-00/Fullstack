@@ -17,7 +17,6 @@ export class ContributionComponent {
   newStudentName: string = '';
   newRole: string = '';
 
-  // Backend API URL
   private apiUrl = 'http://localhost:5000/api/contributions';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
@@ -25,16 +24,15 @@ export class ContributionComponent {
     this.loadContributions();
   }
 
-  // Load contributions from the backend
   loadContributions() {
-    this.http.get<{ studentName: string; role: string }[]>(
-      `${this.apiUrl}/${this.projectId}`
-    ).subscribe((data) => {
-      this.filteredContributions = data;
-    });
+    this.http.get<{ studentName: string; role: string }[]>(`${this.apiUrl}/${this.projectId}`)
+      .subscribe((data) => {
+        this.filteredContributions = data;
+      }, (error) => {
+        console.error("Error loading contributions:", error);
+      });
   }
 
-  // Add a new contribution
   addContribution() {
     if (this.newStudentName && this.newRole) {
       const newContribution = {
@@ -43,30 +41,34 @@ export class ContributionComponent {
         role: this.newRole,
       };
 
-      this.http.post(this.apiUrl, newContribution).subscribe((response: any) => {
-        alert(response.message);
-        this.newStudentName = '';
-        this.newRole = '';
-        this.loadContributions();
-      }, (error) => {
-        alert("Failed to add contribution");
+      this.http.post(this.apiUrl, newContribution).subscribe({
+        next: (response: any) => {
+          alert(response.message);
+          this.filteredContributions.push({ studentName: this.newStudentName, role: this.newRole });
+          this.newStudentName = '';
+          this.newRole = '';
+        },
+        error: (error) => {
+          alert("Failed to add contribution");
+          console.error("Error:", error);
+        }
       });
     }
   }
 
-  // Remove a contribution
   removeContribution(contribution: { studentName: string; role: string }) {
-    this.http
-      .delete(
-        `${this.apiUrl}/${this.projectId}/${encodeURIComponent(
-          contribution.studentName
-        )}`
-      )
-      .subscribe((response: any) => {
+    const url = `${this.apiUrl}/${this.projectId}/${encodeURIComponent(contribution.studentName)}`;
+    console.log("Removing contribution:", url);
+
+    this.http.delete(url).subscribe({
+      next: (response: any) => {
         alert(response.message);
-        this.loadContributions();
-      }, (error) => {
+        this.filteredContributions = this.filteredContributions.filter(c => c.studentName !== contribution.studentName);
+      },
+      error: (error) => {
         alert("Failed to remove contribution");
-      });
+        console.error("Error:", error);
+      }
+    });
   }
 }
